@@ -102,45 +102,45 @@ export default function EditPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F8F9FA' }}>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-100 via-slate-50 to-white">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F8F9FA' }}>
+    <div className="app-shell min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <header className="app-header sticky top-0 z-10 border-b border-slate-200/80 bg-white/85 backdrop-blur">
+        <div className="app-header-inner mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
           <button
             onClick={() => router.push('/')}
-            className="text-gray-500 hover:text-gray-700 flex items-center gap-1 text-sm transition-colors"
+            className="inline-flex items-center gap-1 self-start rounded-full px-3 py-1.5 text-sm text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700"
           >
             ← 一覧へ
           </button>
-          <span className="font-semibold text-gray-700">
+          <span className="font-semibold text-slate-700">
             {isNew ? '新規作成' : 'ノートを編集'}
           </span>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 sm:justify-end">
             {!isNew && (
               <button
                 onClick={handleDelete}
-                className="text-red-500 hover:text-red-700 text-sm px-3 py-1.5 rounded-lg hover:bg-red-50 transition-colors"
+                className="ui-btn-danger rounded-xl px-3 py-2 text-sm text-red-500 transition-colors hover:bg-red-50 hover:text-red-700"
               >
                 削除
               </button>
             )}
             <button
               onClick={() => router.push(isNew ? '/' : `/study/${id}`)}
-              className="text-gray-500 hover:text-gray-700 text-sm px-3 py-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+              className="ui-btn-secondary rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800"
             >
               キャンセル
             </button>
             <button
               onClick={handleSave}
               disabled={saving}
-              className="bg-blue-600 text-white text-sm px-4 py-1.5 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors font-medium"
+              className="ui-btn-primary rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
             >
               {saving ? '保存中...' : '保存する'}
             </button>
@@ -149,8 +149,8 @@ export default function EditPage({ params }: PageProps) {
       </header>
 
       {/* Form */}
-      <main className="max-w-4xl mx-auto px-4 py-8 space-y-4">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+      <main className="app-main mx-auto w-full max-w-5xl space-y-4 px-4 py-6 sm:py-8">
+        <div className="ui-panel rounded-3xl border border-slate-200/90 bg-white/95 p-4 shadow-sm">
           <input
             type="text"
             value={title}
@@ -160,18 +160,18 @@ export default function EditPage({ params }: PageProps) {
           />
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200">
-          <div className="px-4 pt-3 pb-2 border-b border-gray-100">
-            <p className="text-xs text-gray-400">
-              💡 <code className="bg-gray-100 px-1 rounded">{'{{単語}}'}</code> で穴埋め、
-              <code className="bg-gray-100 px-1 rounded">{'==テキスト=='}</code> でハイライト
+        <div className="ui-panel overflow-hidden rounded-3xl border border-slate-200/90 bg-white/95 shadow-sm">
+          <div className="border-b border-slate-100 px-4 pb-2 pt-3">
+            <p className="text-xs text-slate-500">
+              💡 <code className="rounded bg-slate-100 px-1">{'{{単語}}'}</code> で穴埋め、
+              <code className="rounded bg-slate-100 px-1">{'==テキスト=='}</code> でハイライト
             </p>
           </div>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Markdownで本文を入力..."
-            className="w-full h-96 p-4 text-gray-700 placeholder-gray-400 border-none outline-none resize-none bg-transparent font-mono text-sm leading-relaxed"
+            className="h-[60vh] min-h-80 w-full resize-none border-none bg-transparent p-4 font-mono text-sm leading-relaxed text-gray-700 placeholder-gray-400 outline-none"
           />
         </div>
       </main>

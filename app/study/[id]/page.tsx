@@ -18,7 +18,7 @@ export default function StudyPage({ params }: PageProps) {
   const [note, setNote] = useState<Note | null>(null);
   const [loading, setLoading] = useState(true);
   const [parsedHtml, setParsedHtml] = useState('');
-  const [pdfMode, setPdfMode] = useState<PdfMode>('a');
+  const [pdfMode, setPdfMode] = useState<PdfMode>('b');
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -116,7 +116,7 @@ export default function StudyPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F8F9FA' }}>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-100 via-slate-50 to-white">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
       </div>
     );
@@ -125,21 +125,21 @@ export default function StudyPage({ params }: PageProps) {
   if (!note) return null;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F8F9FA' }}>
+    <div className="app-shell min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-10 no-print">
-        <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+      <header className="app-header sticky top-0 z-10 border-b border-slate-200/80 bg-white/85 backdrop-blur no-print">
+        <div className="app-header-inner mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
           <button
             onClick={() => router.push('/')}
-            className="text-gray-500 hover:text-gray-700 flex items-center gap-1 text-sm transition-colors"
+            className="inline-flex items-center gap-1 self-start rounded-full px-3 py-1.5 text-sm text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700"
           >
             ← 一覧へ
           </button>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 sm:justify-end">
             <select
               value={pdfMode}
               onChange={(e) => setPdfMode(e.target.value as PdfMode)}
-              className="text-sm border border-gray-200 rounded-lg px-3 py-1.5 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-200 sm:w-auto"
             >
               {(Object.keys(pdfModeLabels) as PdfMode[]).map((mode) => (
                 <option key={mode} value={mode}>
@@ -149,22 +149,22 @@ export default function StudyPage({ params }: PageProps) {
             </select>
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1 bg-gray-800 text-white text-sm px-3 py-1.5 rounded-lg hover:bg-gray-900 transition-colors"
+              className="ui-btn-primary inline-flex items-center rounded-xl bg-slate-800 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-900"
             >
-              🖨️ PDF出力
+              PDF出力
             </button>
             <button
               onClick={() => router.push(`/edit/${id}`)}
-              className="flex items-center gap-1 text-gray-500 hover:text-gray-700 text-sm px-3 py-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+              className="ui-btn-secondary inline-flex items-center rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800"
             >
-              ✏️ 編集
+              編集
             </button>
           </div>
         </div>
       </header>
 
       {/* Content */}
-      <main className="max-w-3xl mx-auto px-4 py-8">
+      <main className="app-main mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
         <h1 className="text-2xl font-bold text-gray-900 mb-6 print-title">
           {note.title}
         </h1>
@@ -178,7 +178,7 @@ export default function StudyPage({ params }: PageProps) {
 
         <div
           ref={contentRef}
-          className="bg-white rounded-xl border border-gray-200 p-8 markdown-body"
+          className="ui-panel markdown-body rounded-3xl border border-slate-200/90 bg-white/95 p-5 shadow-sm sm:p-8"
           dangerouslySetInnerHTML={{ __html: parsedHtml }}
         />
       </main>
