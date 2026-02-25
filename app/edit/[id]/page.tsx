@@ -109,10 +109,10 @@ export default function EditPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
+    <div className="app-shell min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-slate-200/80 bg-white/85 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+      <header className="app-header sticky top-0 z-10 border-b border-slate-200/80 bg-white/85 backdrop-blur">
+        <div className="app-header-inner mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
           <button
             onClick={() => router.push('/')}
             className="inline-flex items-center gap-1 self-start rounded-full px-3 py-1.5 text-sm text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700"
@@ -126,21 +126,21 @@ export default function EditPage({ params }: PageProps) {
             {!isNew && (
               <button
                 onClick={handleDelete}
-                className="rounded-xl px-3 py-2 text-sm text-red-500 transition-colors hover:bg-red-50 hover:text-red-700"
+                className="ui-btn-danger rounded-xl px-3 py-2 text-sm text-red-500 transition-colors hover:bg-red-50 hover:text-red-700"
               >
                 削除
               </button>
             )}
             <button
               onClick={() => router.push(isNew ? '/' : `/study/${id}`)}
-              className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800"
+              className="ui-btn-secondary rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-800"
             >
               キャンセル
             </button>
             <button
               onClick={handleSave}
               disabled={saving}
-              className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
+              className="ui-btn-primary rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
             >
               {saving ? '保存中...' : '保存する'}
             </button>
@@ -149,8 +149,8 @@ export default function EditPage({ params }: PageProps) {
       </header>
 
       {/* Form */}
-      <main className="mx-auto w-full max-w-5xl space-y-4 px-4 py-6 sm:py-8">
-        <div className="rounded-3xl border border-slate-200/90 bg-white/95 p-4 shadow-sm">
+      <main className="app-main mx-auto w-full max-w-5xl space-y-4 px-4 py-6 sm:py-8">
+        <div className="ui-panel rounded-3xl border border-slate-200/90 bg-white/95 p-4 shadow-sm">
           <input
             type="text"
             value={title}
@@ -160,7 +160,7 @@ export default function EditPage({ params }: PageProps) {
           />
         </div>
 
-        <div className="overflow-hidden rounded-3xl border border-slate-200/90 bg-white/95 shadow-sm">
+        <div className="ui-panel overflow-hidden rounded-3xl border border-slate-200/90 bg-white/95 shadow-sm">
           <div className="border-b border-slate-100 px-4 pb-2 pt-3">
             <p className="text-xs text-slate-500">
               💡 <code className="rounded bg-slate-100 px-1">{'{{単語}}'}</code> で穴埋め、

@@ -34,14 +34,14 @@ export default function ListPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
+    <div className="app-shell min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-slate-200/80 bg-white/85 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-4">
+      <header className="app-header sticky top-0 z-10 border-b border-slate-200/80 bg-white/85 backdrop-blur">
+        <div className="app-header-inner mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-4">
           <h1 className="rounded-xl bg-slate-100 px-3 py-1 text-lg font-bold tracking-tight text-slate-900">📝 MarkdownMemo</h1>
           <button
             onClick={() => router.push('/edit/new')}
-            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
+            className="ui-btn-primary inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
           >
             <span>＋</span> 新規作成
           </button>
@@ -49,8 +49,8 @@ export default function ListPage() {
       </header>
 
       {/* Content */}
-      <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
-        <section className="mb-6 rounded-3xl border border-slate-200/80 bg-white/90 p-5 shadow-sm sm:p-6">
+      <main className="app-main mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
+        <section className="ui-panel mb-6 rounded-3xl border border-slate-200/80 bg-white/90 p-5 shadow-sm sm:p-6">
           <h2 className="text-lg font-semibold text-slate-900">ノート一覧</h2>
           <p className="mt-1 text-sm text-slate-500">Markdownで作った暗記メモを、ここから学習できます。</p>
         </section>
@@ -59,13 +59,13 @@ export default function ListPage() {
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
           </div>
         ) : notes.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-slate-300 bg-white py-16 text-center shadow-sm">
+            <div className="ui-panel rounded-2xl border border-slate-200 bg-white py-16 text-center shadow-sm">
               <div className="text-6xl mb-4">📄</div>
               <p className="text-gray-500 text-lg mb-2">ノートがありません</p>
               <p className="text-gray-400 text-sm mb-6">「＋ 新規作成」ボタンでノートを作成してください</p>
               <button
                 onClick={() => router.push('/edit/new')}
-                className="rounded-xl bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700"
+                 className="ui-btn-primary rounded-xl bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700"
               >
                 最初のノートを作成する
               </button>
@@ -75,7 +75,7 @@ export default function ListPage() {
               {notes.map((note) => (
                 <div
                   key={note.id}
-                  className="cursor-pointer rounded-3xl border border-slate-200/90 bg-white/95 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md sm:p-6"
+                  className="ui-panel cursor-pointer rounded-3xl border border-slate-200/90 bg-white/95 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md sm:p-6"
                   onClick={() => router.push(`/study/${note.id}`)}
                 >
                   <div className="flex items-start justify-between gap-4">
@@ -94,7 +94,7 @@ export default function ListPage() {
                           e.stopPropagation();
                           router.push(`/edit/${note.id}`);
                         }}
-                        className="rounded-lg px-2 py-1 text-sm text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                        className="ui-btn-secondary rounded-lg px-2 py-1 text-sm text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
                       >
                         編集
                       </button>
