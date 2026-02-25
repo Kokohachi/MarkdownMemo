@@ -116,7 +116,7 @@ export default function StudyPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F8F9FA' }}>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-100 via-slate-50 to-white">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
       </div>
     );
@@ -125,10 +125,10 @@ export default function StudyPage({ params }: PageProps) {
   if (!note) return null;
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-slate-200/80 bg-white/90 backdrop-blur no-print">
-        <div className="mx-auto flex w-full max-w-4xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+      <header className="sticky top-0 z-10 border-b border-slate-200/80 bg-white/85 backdrop-blur no-print">
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
           <button
             onClick={() => router.push('/')}
             className="inline-flex items-center gap-1 self-start rounded-full px-3 py-1.5 text-sm text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700"
@@ -164,7 +164,7 @@ export default function StudyPage({ params }: PageProps) {
       </header>
 
       {/* Content */}
-      <main className="mx-auto w-full max-w-4xl px-4 py-6 sm:py-8">
+      <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
         <h1 className="text-2xl font-bold text-gray-900 mb-6 print-title">
           {note.title}
         </h1>
@@ -178,7 +178,7 @@ export default function StudyPage({ params }: PageProps) {
 
         <div
           ref={contentRef}
-          className="markdown-body rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8"
+          className="markdown-body rounded-3xl border border-slate-200/90 bg-white/95 p-5 shadow-sm sm:p-8"
           dangerouslySetInnerHTML={{ __html: parsedHtml }}
         />
       </main>

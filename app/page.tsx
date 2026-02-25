@@ -34,14 +34,14 @@ export default function ListPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-slate-200/80 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-4xl items-center justify-between gap-3 px-4 py-4">
-          <h1 className="text-xl font-bold text-slate-900">📝 MarkdownMemo</h1>
+      <header className="sticky top-0 z-10 border-b border-slate-200/80 bg-white/85 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-4">
+          <h1 className="rounded-xl bg-slate-100 px-3 py-1 text-lg font-bold tracking-tight text-slate-900">📝 MarkdownMemo</h1>
           <button
             onClick={() => router.push('/edit/new')}
-            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
           >
             <span>＋</span> 新規作成
           </button>
@@ -49,9 +49,13 @@ export default function ListPage() {
       </header>
 
       {/* Content */}
-      <main className="mx-auto w-full max-w-4xl px-4 py-6 sm:py-8">
+      <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
+        <section className="mb-6 rounded-3xl border border-slate-200/80 bg-white/90 p-5 shadow-sm sm:p-6">
+          <h2 className="text-lg font-semibold text-slate-900">ノート一覧</h2>
+          <p className="mt-1 text-sm text-slate-500">Markdownで作った暗記メモを、ここから学習できます。</p>
+        </section>
         {loading ? (
-          <div className="flex items-center justify-center py-20">
+          <div className="flex items-center justify-center rounded-3xl border border-slate-200/80 bg-white/90 py-20 shadow-sm">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
           </div>
         ) : notes.length === 0 ? (
@@ -71,7 +75,7 @@ export default function ListPage() {
               {notes.map((note) => (
                 <div
                   key={note.id}
-                  className="cursor-pointer rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-6"
+                  className="cursor-pointer rounded-3xl border border-slate-200/90 bg-white/95 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md sm:p-6"
                   onClick={() => router.push(`/study/${note.id}`)}
                 >
                   <div className="flex items-start justify-between gap-4">

@@ -102,17 +102,17 @@ export default function EditPage({ params }: PageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F8F9FA' }}>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-100 via-slate-50 to-white">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-50 to-white">
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-slate-200/80 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-4xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+      <header className="sticky top-0 z-10 border-b border-slate-200/80 bg-white/85 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
           <button
             onClick={() => router.push('/')}
             className="inline-flex items-center gap-1 self-start rounded-full px-3 py-1.5 text-sm text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700"
@@ -149,8 +149,8 @@ export default function EditPage({ params }: PageProps) {
       </header>
 
       {/* Form */}
-      <main className="mx-auto w-full max-w-4xl space-y-4 px-4 py-6 sm:py-8">
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <main className="mx-auto w-full max-w-5xl space-y-4 px-4 py-6 sm:py-8">
+        <div className="rounded-3xl border border-slate-200/90 bg-white/95 p-4 shadow-sm">
           <input
             type="text"
             value={title}
@@ -160,7 +160,7 @@ export default function EditPage({ params }: PageProps) {
           />
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div className="overflow-hidden rounded-3xl border border-slate-200/90 bg-white/95 shadow-sm">
           <div className="border-b border-slate-100 px-4 pb-2 pt-3">
             <p className="text-xs text-slate-500">
               💡 <code className="rounded bg-slate-100 px-1">{'{{単語}}'}</code> で穴埋め、
