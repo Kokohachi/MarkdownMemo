@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MarkdownMemo
 
-## Getting Started
+Markdownテキストから「インタラクティブな穴埋め問題」を自動生成し、ブラウザ上で暗記学習・保存・PDF出力ができるSPA。
 
-First, run the development server:
+## 技術スタック
+
+- **Next.js 14** (App Router) + **TypeScript**
+- **Tailwind CSS**
+- **marked.js** - カスタムMarkdownパーサー
+- **Dexie.js** - IndexedDB (AnkiNoteDB)
+
+## 機能
+
+### 画面構成
+
+| 画面 | URL | 説明 |
+|------|-----|------|
+| 一覧画面 | `/` | ノート一覧（更新日時降順）、新規作成ボタン |
+| 編集画面 | `/edit/new` `/edit/[id]` | タイトル・本文入力、保存/キャンセル/削除 |
+| 学習画面 | `/study/[id]` | 穴埋め学習、PDF出力モード選択 |
+
+### カスタムMarkdown記法
+
+- `{{単語}}` → クリックで状態が変わる穴埋め要素
+- `==テキスト==` → 黄色ハイライト
+
+### 穴埋め要素の状態遷移
+
+クリックのたびに3状態をループ:
+
+1. **State 0** (隠蔽): グレー背景、番号のみ表示 `[ 1 ]`
+2. **State 1** (ヒント): 1文字目＋`...` `[ あ... ]`
+3. **State 2** (解答): 全文表示 `[ あっぷる ]`
+
+### PDF出力モード
+
+| モード | 説明 |
+|--------|------|
+| Mode A | 通常 - 全解答を表示 |
+| Mode B | テスト用紙 - 全穴埋めを番号のみ表示 |
+| Mode C | 赤シート用 - 解答テキストを朱色(#FF5555)で表示 |
+
+## セットアップ
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで http://localhost:3000 を開く。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ビルド
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm start
+```
